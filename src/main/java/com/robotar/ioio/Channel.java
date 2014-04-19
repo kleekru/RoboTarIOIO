@@ -2,7 +2,7 @@ package com.robotar.ioio;
 
 public class Channel {
 
-	private static int channelForServo;
+	private int channelForServo;
 	
 	Channel(int channel) {
 		this.channelForServo = channel;
@@ -55,12 +55,12 @@ public class Channel {
 		return channelForServo;
 		} //End channelForServo method
 
-	public static int getChannelForServo() {
+	public int getChannelForServo() {
 		return channelForServo;
 	}
 
-	public static void setChannelForServo(int channelForServo) {
-		Channel.channelForServo = channelForServo;
+	public void setChannelForServo(int channelForServo) {
+		this.channelForServo = channelForServo;
 	}
 		
 		

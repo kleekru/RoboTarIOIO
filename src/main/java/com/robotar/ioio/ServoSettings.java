@@ -3,15 +3,13 @@ package com.robotar.ioio;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import cz.versarius.xchords.Chord;
@@ -22,9 +20,11 @@ import cz.versarius.xchords.StringState;
  * Class for holding info for servos.
  * Can translate XChord into the values for RoboTar device.
  */
-public class ServoSettings {
-	private static final Logger LOG = LoggerFactory.getLogger(ServoSettings.class);
+public class ServoSettings implements Serializable {
+	private static final long serialVersionUID = -440066339938488519L;
 
+	private static final Logger LOG = LoggerFactory.getLogger(ServoSettings.class);
+	
 	public static final float NEUTRAL = 1.0f;
 	public static final float MUTED = 0.9f;
 	public static final float PRESSED_TOP_RIGHT = 1.3f;
@@ -214,6 +214,19 @@ public class ServoSettings {
 		}
 		return sb.toString();
 	}
+
+	public String debugOutputCorrections() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n");
+		for (int i = 0; i < 12; i++) {
+			for (int j = 0; j < 4; j++) {
+				sb.append(CORRECTION[i][j]);
+				sb.append("  ");
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 	
 	public int[] getServos() {
 		return servos;
@@ -268,9 +281,25 @@ public class ServoSettings {
 		return new ServoSettings();
 	}
 
-	public static ServoSettings loadCorrectionsOnAndroid() {
+	public static ServoSettings loadCorrectionsOnAndroid(File file) {
+		XMLSettingLoader loader = new XMLSettingLoader();
+		try {
+			// first try relative path from current working dir 
+			// (where RoboTar was started - it may be location of .bat file, .jnlp file or project root (Eclipse run))
+			LOG.info("loading corrections from file: {}", file.getAbsolutePath());
+			return loader.load(new FileInputStream(file));
+		} catch (IOException e) {
+			LOG.error("loadfrom.ioexception", e);
+		} catch (ParserConfigurationException e) {
+			LOG.error("loadfrom.parseconfigurationexception", e);
+		} catch (SAXException e) {
+			LOG.error("loadfrom.saxexception", e);
+		}
+		// not found
+		LOG.error("cannot load corrections, creating new default, empty settings with neutral corrections");
+		return new ServoSettings();
 		// TODO for now just simply set the values in code. later find out if the file loading works as on PC...
-		ServoSettings sett = new ServoSettings();
+		/*ServoSettings sett = new ServoSettings();
 		// neutral, muted, left, right
 		float corr[][] = { 
 				{0.2f, 0.001f, 0.0f, 0.0f}, // servo 0
@@ -288,7 +317,7 @@ public class ServoSettings {
 				};
 			
 		sett.setCorrections(corr);
-		return sett;
+		return sett;*/
 	}
 	
 	public static void saveCorrectionsAs(File file, ServoSettings sett) {
