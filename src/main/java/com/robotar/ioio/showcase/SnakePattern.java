@@ -16,7 +16,7 @@ public class SnakePattern extends ShowcasePattern {
 		int dj = 1;
 		while (!shouldQuit && loop < loops) {
 			leds[i][j].write(true);
-			Thread.sleep(200);
+			Thread.sleep(100);
 			leds[i][j].write(false);
 			i += di;
 			if (i < 0) {

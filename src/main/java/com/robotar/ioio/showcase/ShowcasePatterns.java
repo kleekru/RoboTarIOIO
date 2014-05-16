@@ -43,6 +43,6 @@ public class ShowcasePatterns {
 			throw new IllegalArgumentException("wrong idx, out of bounds");
 		}
 		currentPattern = patterns.get(i);
-		currentPattern.play(leds, 3);
+		currentPattern.play(leds, 1);
 	}
 }

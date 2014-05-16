@@ -25,7 +25,7 @@ public class FlashPattern extends ShowcasePattern {
 				loop++;
 			}
 			b = !b;
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		}
 	}
 

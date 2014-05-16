@@ -14,7 +14,7 @@ public class StringsPattern extends ShowcasePattern {
 		int loop = 0;
 		while (!shouldQuit && loop < loops) {
 			leds[i][j].write(true);
-			Thread.sleep(200);
+			Thread.sleep(100);
 			leds[i][j].write(false);
 			j++;
 			if (j > 3) {
