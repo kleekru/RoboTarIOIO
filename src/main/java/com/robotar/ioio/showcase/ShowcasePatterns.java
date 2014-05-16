@@ -31,7 +31,7 @@ public class ShowcasePatterns {
 		patterns.add(new FlashPattern(500));
 		patterns.add(new StringsPattern(100));
 		patterns.add(new SnakePattern(100));
-		patterns.add(new RandomOnPattern(500));
+		patterns.add(new RandomOnPattern(100));
 	}
 	
 	public int getRandomPatternIdx() {
