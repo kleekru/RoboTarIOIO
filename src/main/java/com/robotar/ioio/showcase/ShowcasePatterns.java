@@ -28,9 +28,10 @@ public class ShowcasePatterns {
 	}
 	
 	public void initAll() {
-		patterns.add(new FlashPattern());
-		patterns.add(new StringsPattern());
-		patterns.add(new SnakePattern());
+		patterns.add(new FlashPattern(500));
+		patterns.add(new StringsPattern(100));
+		patterns.add(new SnakePattern(100));
+		patterns.add(new RandomOnPattern(500));
 	}
 	
 	public int getRandomPatternIdx() {

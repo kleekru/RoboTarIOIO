@@ -5,6 +5,11 @@ import ioio.lib.api.exception.ConnectionLostException;
 
 public abstract class ShowcasePattern {
 	protected boolean shouldQuit;
+	protected int delay;
+	
+	public ShowcasePattern(int delay) {
+		this.delay = delay;
+	}
 	
 	public boolean isShouldQuit() {
 		return shouldQuit;

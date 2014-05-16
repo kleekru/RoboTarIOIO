@@ -4,6 +4,10 @@ import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.exception.ConnectionLostException;
 
 public class FlashPattern extends ShowcasePattern {
+	public FlashPattern(int delay) {
+		super(delay);
+	}
+
 	@Override
 	public void play(DigitalOutput[][] leds, int loops) throws InterruptedException, ConnectionLostException {
 		// shine all

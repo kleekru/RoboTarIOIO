@@ -5,6 +5,10 @@ import ioio.lib.api.exception.ConnectionLostException;
 
 public class StringsPattern extends ShowcasePattern {
 
+	public StringsPattern(int delay) {
+		super(delay);
+	}
+
 	@Override
 	public void play(DigitalOutput[][] leds, int loops) throws InterruptedException,
 			ConnectionLostException {
@@ -14,7 +18,7 @@ public class StringsPattern extends ShowcasePattern {
 		int loop = 0;
 		while (!shouldQuit && loop < loops) {
 			leds[i][j].write(true);
-			Thread.sleep(100);
+			Thread.sleep(delay);
 			leds[i][j].write(false);
 			j++;
 			if (j > 3) {
