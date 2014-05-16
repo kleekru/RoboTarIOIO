@@ -26,7 +26,7 @@ public class RandomOnPattern extends ShowcasePattern {
 				// find not yet turn on led
 				int ri = rig.nextInt(6);
 				int rj = rjg.nextInt(4);
-				while (!shines[ri][rj]) {
+				while (shines[ri][rj]) {
 					ri = rig.nextInt(6);
 					rj = rjg.nextInt(4);
 				}
