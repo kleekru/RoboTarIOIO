@@ -27,6 +27,12 @@ public class ShowcasePatterns {
 		patterns.add(p);
 	}
 	
+	public void initAll() {
+		patterns.add(new FlashPattern());
+		patterns.add(new StringsPattern());
+		patterns.add(new SnakePattern());
+	}
+	
 	public int getRandomPatternIdx() {
 		if (patterns.isEmpty()) return -1;
 		return r.nextInt(patterns.size());
