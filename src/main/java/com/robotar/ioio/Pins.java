@@ -7,6 +7,8 @@ package com.robotar.ioio;
 public class Pins {
 	public final static int PEDAL_PIN = 34;
 
+	public final static int ACTIVITY_PIN = 37;
+	
 	// assuming 6 = e low, 5 = a, ...
 	// which is 0, 1, ... as string number elsewhere in the code
 	public final static int LED_PIN_61 = 6;
